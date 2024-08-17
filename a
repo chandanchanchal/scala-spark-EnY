@@ -20,3 +20,21 @@ export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
         <value>hdfs://localhost:9000</value>
         <description>The name of the default file system></description>
     </property>
+
+
+
+
+
+
+<property>
+  <name>dfs.data.dir</name>
+  <value>/home/hdoop/dfsdata/namenode</value>
+</property>
+<property>
+  <name>dfs.data.dir</name>
+  <value>/home/hdoop/dfsdata/datanode</value>
+</property>
+<property>
+  <name>dfs.replication</name>
+  <value>1</value>
+</property>
