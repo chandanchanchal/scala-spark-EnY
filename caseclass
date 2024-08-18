@@ -1,0 +1,14 @@
+case class student (name:String, rollnum:Int)
+
+object Main {
+
+ def main(args: Array[String]) {
+
+   var std = student("Ajay",1001)
+   println("Name of the student is :" +std.name)
+   println("Roll of the student is :" +std.rollnum)
+ 
+ }
+
+
+}
