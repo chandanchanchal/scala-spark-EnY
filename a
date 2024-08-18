@@ -85,3 +85,19 @@ object Demo {
       pt.move(10, 10);
    }
 }
+
+
+import org.apache.spark.sql.SparkSession
+object SparkSessionTest extends App {
+
+  // Create SparkSession object
+  val spark = SparkSession.builder()
+      .master("local[1]")
+      .appName("LearnigSpark")
+      .getOrCreate();
+
+  // Access spark context
+  println(spark.sparkContext)
+  println("Spark App Name : "+spark.sparkContext.appName)
+}
+
