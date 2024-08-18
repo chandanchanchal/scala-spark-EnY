@@ -101,3 +101,31 @@ object SparkSessionTest extends App {
   println("Spark App Name : "+spark.sparkContext.appName)
 }
 
+
+// Complete example of SparkContext
+import org.apache.spark.{SparkConf, SparkContext}
+
+object SparkContextExample extends App{
+
+  val conf = new SparkConf().setAppName("sparklearning").setMaster("local[1]")
+  val sparkContext = new SparkContext(conf)
+  val rdd = sparkContext.textFile("/home/ansadmin/text01.txt")
+
+  sparkContext.setLogLevel("ERROR")
+
+  println("First SparkContext:")
+  println("APP Name :"+sparkContext.appName)
+  println("Deploy Mode :"+sparkContext.deployMode)
+  println("Master :"+sparkContext.master)
+ // sparkContext.stop()
+  
+  val conf2 = new SparkConf().setAppName("sparklearning-2").setMaster("local[1]")
+  val sparkContext2 = new SparkContext(conf2)
+
+  println("Second SparkContext:")
+  println("APP Name :"+sparkContext2.appName)
+  println("Deploy Mode :"+sparkContext2.deployMode)
+  println("Master :"+sparkContext2.master)
+  
+}
+
