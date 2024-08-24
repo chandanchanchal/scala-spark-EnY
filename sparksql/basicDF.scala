@@ -103,3 +103,6 @@ df_with_schema.show(false)
     spark.sparkContext.parallelize(arrayStructureData),arrayStructureSchema)
   df.printSchema()
   df.show()
+
+ df.where(df("state") === "OH")
+    .show(false)
