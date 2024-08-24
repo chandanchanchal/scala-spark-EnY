@@ -2,6 +2,13 @@ import org.apache.spark.sql.SparkSession
 
 object ReadMultipleFiles extends App {
 
+  val spark:SparkSession = SparkSession.builder()
+    .master("local[1]")
+    .appName("ccspark")
+    .getOrCreate()
+
+  spark.sparkContext.setLogLevel("ERROR")
+
 
 
   println("read all text files from a directory to single RDD")
