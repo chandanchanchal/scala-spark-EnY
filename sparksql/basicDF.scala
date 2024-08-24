@@ -106,3 +106,6 @@ df_with_schema.show(false)
 
  df.where(df("state") === "OH")
     .show(false)
+
+  df.where("gender == 'M'")
+    .show(false)
