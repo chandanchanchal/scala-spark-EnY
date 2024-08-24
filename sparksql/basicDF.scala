@@ -43,3 +43,38 @@ df3.printSchema()
 val options = Map("infereSchema"->"true","delimiter"->",","header"->"true")
 val df3 = spark.read.options(options).csv("/home/ansadmin/data/scala-spark-EnY/Data/zipcodes.csv")
 df3.printSchema()
+
+
+/ Import types
+import org.apache.spark.sql.types._
+
+// Read with custom schema
+val schema = new StructType()
+      .add("RecordNumber",IntegerType,true)
+      .add("Zipcode",IntegerType,true)
+      .add("ZipCodeType",StringType,true)
+      .add("City",StringType,true)
+      .add("State",StringType,true)
+      .add("LocationType",StringType,true)
+      .add("Lat",DoubleType,true)
+      .add("Long",DoubleType,true)
+      .add("Xaxis",IntegerType,true)
+      .add("Yaxis",DoubleType,true)
+      .add("Zaxis",DoubleType,true)
+      .add("WorldRegion",StringType,true)
+      .add("Country",StringType,true)
+      .add("LocationText",StringType,true)
+      .add("Location",StringType,true)
+      .add("Decommisioned",BooleanType,true)
+      .add("TaxReturnsFiled",StringType,true)
+      .add("EstimatedPopulation",IntegerType,true)
+      .add("TotalWages",IntegerType,true)
+      .add("Notes",StringType,true)
+
+// Read CSV file with custom schema
+val df_with_schema = spark.read.format("csv")
+      .option("header", "true")
+      .schema(schema)
+      .load("zipcodes.csv")
+df_with_schema.printSchema()
+df_with_schema.show(false)
