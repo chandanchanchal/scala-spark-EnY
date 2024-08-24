@@ -25,3 +25,17 @@ val schema = StructType( Array(
 // Use map() transformation to get Row type
 val rowRDD = rdd.map(attributes => Row(attributes._1, attributes._2))
 val dfFromRDD3 = spark.createDataFrame(rowRDD,schema)
+
+
+
+val dfFromRdd1 = rdd.toDF()
+dfFromRdd1.printSchema()
+dfFromRdd1.show()
+val dfFromRdd1 = rdd.toDF("language","users_count")
+dfFromRdd1.printSchema()
+dfFromRdd1.show()
+
+val df = spark.read.csv("/home/ansadmin/data/scala-spark-EnY/Data/zipcodes.csv")
+
+val df3 = spark.read.option("header",true).csv("/home/ansadmin/data/scala-spark-EnY/Data/zipcodes.csv")
+df3.printSchema()
