@@ -1,0 +1,8 @@
+  val rdd = spark.sparkContext.parallelize(Range(0,20))
+  println("From local[5]"+rdd.partitions.size)
+
+  val rdd1 = spark.sparkContext.parallelize(Range(0,20), 6)
+  println("parallelize : "+rdd1.partitions.size)
+
+  val rddFromFile = spark.sparkContext.textFile("test.txt",10)
+  println("TextFile : "+rddFromFile.partitions.size)
