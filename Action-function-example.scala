@@ -6,7 +6,7 @@ import scala.collection.mutable
 object RDDActions extends App {
 
   val spark = SparkSession.builder()
-    .appName("SparkByExample")
+    .appName("ccspark")
     .master("local")
     .getOrCreate()
 
