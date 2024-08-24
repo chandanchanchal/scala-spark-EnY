@@ -6,3 +6,15 @@
 
   val rddFromFile = spark.sparkContext.textFile("test.txt",10)
   println("TextFile : "+rddFromFile.partitions.size)
+
+  val rddFromFile = spark.sparkContext.textFile("/home/ansadmin/data/scala-spark-EnY/Data/txt/alice.txt",10)
+  println("TextFile : "+rddFromFile.partitions.size)
+  
+  val rdd2 = rdd1.repartition(4)
+  
+  println("Repartitions size: "+ rdd2.partitions.size)
+  rdd2.saveAsTextFile("/home/ansadmin/re-partitions")
+  
+  val rdd3 = rdd1.coalesce(4)
+  println("Repartitions size: "+ rdd3.partitions.size)
+  rdd3.saveAsTextFile("/home/ansadmin/coalesce")
