@@ -7,3 +7,7 @@ val data = Seq(("Java", "20000"), ("Python", "100000"), ("Scala", "3000"))
 val dfFromRdd1 = rdd.toDF()
 dfFromRdd1.printSchema()
 dfFromRdd1.show()
+
+val dfFromRdd1 = rdd.toDF("language","users_count")
+dfFromRdd1.printSchema()
+dfFromRdd1.show()
