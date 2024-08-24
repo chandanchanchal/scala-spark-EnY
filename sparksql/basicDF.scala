@@ -39,3 +39,7 @@ val df = spark.read.csv("/home/ansadmin/data/scala-spark-EnY/Data/zipcodes.csv")
 
 val df3 = spark.read.option("header",true).csv("/home/ansadmin/data/scala-spark-EnY/Data/zipcodes.csv")
 df3.printSchema()
+
+val options = Map("infereSchema"->"true","delimiter"->",","header"->"true")
+val df3 = spark.read.options(options).csv("/home/ansadmin/data/scala-spark-EnY/Data/zipcodes.csv")
+df3.printSchema()
