@@ -1,4 +1,6 @@
-
+import org.apache.spark.sql.{Row, SparkSession}
+import org.apache.spark.sql.types.{ArrayType, StringType, StructType}
+import org.apache.spark.sql.functions.array_contains
 
 // Create data
 val columns = Seq("language","users_count")
