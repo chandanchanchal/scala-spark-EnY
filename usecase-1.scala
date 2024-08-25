@@ -99,3 +99,29 @@ final case class JoinedData(
   val joinedData: Dataset[JoinedData] =
     toDS(personDS.join(salesDS, Seq("personId"), "left"))
 
+final case class JoinedDataWithEuro(
+    date: Date,
+    personId: Int,
+    firstName: String,
+    lastName: String,
+    initials: String,
+    customerName: String,
+    amountDollars: Double,
+    amountEuros: Double)
+  def dollarToEuro(d: Double): Double = d * 1.19
+  def initials(firstName: String, lastName: String): String =
+    s"${firstName.substring(0, 1)}${lastName.substring(0, 1)}"
+  val joinedDataWithEuro: Dataset[JoinedDataWithEuro] =
+    joinedData.map(r =>
+      JoinedDataWithEuro(
+        r.date,
+        r.personId,
+        r.firstName.toUpperCase(), // modified column
+        r.lastName.toLowerCase(), // modified column
+        initials(r.firstName, r.lastName), // new column
+        r.customerName.trim(), // modified column
+        r.amountDollars,
+        dollarToEuro(r.amountDollars) // new column
+      )
+    )
+
