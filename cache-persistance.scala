@@ -1,7 +1,7 @@
 // Create sparkSession and apply cache() on DataFrame
 val spark:SparkSession = SparkSession.builder()
     .master("local[1]")
-    .appName("SparkByExamples.com")
+    .appName("ccspark")
     .getOrCreate()
 
 import spark.implicits._
