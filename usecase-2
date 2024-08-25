@@ -20,3 +20,5 @@ firstApproachDF.columns.map(col => col + "_suffix")
 
 firstApproachDF.selectExpr("Asset", "Platform", """`Trade Name`""", """`Buy Date`""", 
 "Unit", """ `Sell Price` - `Buy Price` as profit""" ).show(5)
+
+firstApproachDF.filter(col("Platform") === "Plus500").show()
