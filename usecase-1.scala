@@ -86,3 +86,16 @@ final case class SalesChangeColumnNames(
       m.foldLeft(ds.toDF())((acc, colnames) => acc.withColumnRenamed(colnames._1, colnames._2))
     }
   renameColumns(salesDS, saleColumns)
+
+## Joining
+
+final case class JoinedData(
+    personId: Int,
+    firstName: String,
+    lastName: String,
+    date: Date,
+    customerName: String,
+    amountDollars: Double)
+  val joinedData: Dataset[JoinedData] =
+    toDS(personDS.join(salesDS, Seq("personId"), "left"))
+
