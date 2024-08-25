@@ -16,3 +16,4 @@ val firstApproachDF = data.toDF("Asset", "Platform", "Unit", "Trade Name", "Buy 
 firstApproachDF.show()
 
 firstApproachDF.printSchema 
+firstApproachDF.columns.map(col => col + "_suffix")
