@@ -50,3 +50,12 @@ salesDS.show()
 ##Filtering
 personDS.filter(r => r.firstName.contains("Eric"))
 salesDS.filter(r => r.personId.equals(1))
+
+# certain column name we need to change
+
+df.withColumnRenamed("col1", "newcol1")
+        .withColumnRenamed("col2", "newcol2")
+        .withColumnRenamed("col3", "newcol3")
+        .withColumnRenamed("col4", "newcol4")
+        ...
+        .withColumnRenamed("coln", "newcoln")
