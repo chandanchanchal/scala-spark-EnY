@@ -22,3 +22,8 @@ firstApproachDF.selectExpr("Asset", "Platform", """`Trade Name`""", """`Buy Date
 "Unit", """ `Sell Price` - `Buy Price` as profit""" ).show(5)
 
 firstApproachDF.filter(col("Platform") === "Plus500").show()
+
+val orExampleDF = firstApproachDF.filter(col("Trade Name") === "Amazon" 
+|| col("Trade Name") ==="Facebook")
+
+orExampleDF.show()
