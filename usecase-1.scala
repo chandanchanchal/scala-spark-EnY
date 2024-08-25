@@ -5,3 +5,14 @@ import java.sql.Date
 
 
 def toDS[T <: Product: Encoder](df: DataFrame): Dataset[T] = df.as[T]
+
+##Create Datasets
+final case class Person(
+    personId: Int,
+    firstName: String,
+    lastName: String)
+  final case class Sales(
+    date: Date,
+    personId: Int,
+    customerName: String,
+    amountDollars: Double)
