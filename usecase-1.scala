@@ -43,4 +43,7 @@ private val personSchema: StructType = Encoders.product[Person].schema
   val personDS: Dataset[Person] = getDSFromSeq[Person](personData, personSchema)
   val salesDS: Dataset[Sales] = getDSFromSeq[Sales](salesData, salesSchema)
 
+## Validate data output by calling personDS.show() as well as salesDS.show()
+personDS.show()
+salesDS.show()
 
