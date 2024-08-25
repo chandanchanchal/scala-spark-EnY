@@ -31,3 +31,16 @@ val personData: Seq[Row] = Seq(
     Row(new Date(1601528400000L), 1, "Disco Balls'r'us", 504.00),
     Row(new Date(1601528400000L), 2, "Big Shovels", 9.99)
   )
+##Using Spark, we can read data from Scala Seq objects. The following code will create an StructType object from the case classes defined above. Then we have a function getDSFromSeq that takes parameters data and schema. We then use Spark to read our Seq objects while strongly typing them.
+private val personSchema: StructType = Encoders.product[Person].schema
+  private val salesSchema: StructType  = Encoders.product[Sales].schema
+  def getDSFromSeq[T <: Product: Encoder](data: Seq[Row], schema: StructType) =
+    spark
+      .createDataFrame(
+        spark.sparkContext.parallelize(data),
+        schema
+      ).as[T]
+  val personDS: Dataset[Person] = getDSFromSeq[Person](personData, personSchema)
+  val salesDS: Dataset[Sales] = getDSFromSeq[Sales](salesData, salesSchema)
+
+
