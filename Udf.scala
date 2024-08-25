@@ -6,3 +6,8 @@ val data = Seq(("1", "Be the change that you wish to see in the world"),
   )
 val df = data.toDF(columns:_*)
 df.show(false)
+
+val convertCase =  (strQuote:String) => {
+    val arr = strQuote.split(" ")
+    arr.map(f=>  f.substring(0,1).toUpperCase + f.substring(1,f.length)).mkString(" ")
+}
