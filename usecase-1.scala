@@ -68,3 +68,21 @@ and the second is the new name.
 #Create a function that takes that Map and folds over the input Dataset. 
 #The function within the fold is withColumnRenamed which takes the values from the Map for the current column name 
 #and a new name. A new Dataset is returned type with your final case class.
+
+final case class SalesChangeColumnNames(
+    SALES_DATE: Date,
+    PERSON_ID: Int,
+    CUSTOMER_NAME: String,
+    SALES_IN_DOLLARS: Double)
+  def saleColumns: Map[String, String] =
+    Map(
+      "date"          -> "SALES_DATE",
+      "personId"      -> "PERSON_ID",
+      "customerName"  -> "CUSTOMER_NAME",
+      "amountDollars" -> "SALES_IN_DOLLARS"
+    )
+  def renameColumns(ds: Dataset[Sales], m: Map[String, String]): Dataset[SalesChangeColumnNames] =
+    toDS {
+      m.foldLeft(ds.toDF())((acc, colnames) => acc.withColumnRenamed(colnames._1, colnames._2))
+    }
+  renameColumns(salesDS, saleColumns)
