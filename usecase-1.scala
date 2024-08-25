@@ -49,3 +49,4 @@ salesDS.show()
 
 ##Filtering
 personDS.filter(r => r.firstName.contains("Eric"))
+salesDS.filter(r => r.personId.equals(1))
