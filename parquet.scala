@@ -8,3 +8,5 @@ val columns = Seq("firstname","middlename","lastname","dob","gender","salary")
 
 import spark.sqlContext.implicits._
 val df = data.toDF(columns:_*)
+
+df.write.parquet("/home/ansadmin/data/people.parquet")
