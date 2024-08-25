@@ -47,3 +47,5 @@ private val personSchema: StructType = Encoders.product[Person].schema
 personDS.show()
 salesDS.show()
 
+##Filtering
+personDS.filter(r => r.firstName.contains("Eric")
