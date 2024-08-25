@@ -63,5 +63,8 @@ df.withColumnRenamed("col1", "newcol1")
 #However, when modifying a large number of columns there are more elegant solutions.
 
 #Create a case class that defines how your final set of data should look.
-#Create a function that returns a Map[String, String] where the first string is the current column name, and the second is the new name.
-#Create a function that takes that Map and folds over the input Dataset. The function within the fold is withColumnRenamed which takes the values from the Map for the current column name and a new name. A new Dataset is returned type with your final case class.
+#Create a function that returns a Map[String, String] where the first string is the current column name, 
+and the second is the new name.
+#Create a function that takes that Map and folds over the input Dataset. 
+#The function within the fold is withColumnRenamed which takes the values from the Map for the current column name 
+#and a new name. A new Dataset is returned type with your final case class.
