@@ -10,3 +10,6 @@ import spark.sqlContext.implicits._
 val df = data.toDF(columns:_*)
 
 df.write.parquet("/home/ansadmin/data/people.parquet")
+parquetDF.createOrReplaceTempView("parqTable")
+val parksql = spark.sql("select * from parqTable where salary >= 4000")
+parksql.show()
