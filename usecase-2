@@ -32,3 +32,24 @@ val numberOfTradesPerPlatform = firstApproachDF.groupBy("Asset", "Platform")
 .agg(count("*").as("NumberOfTradesPerAssetPPlatForm"))
 
 numberOfTradesPerPlatform.show()
+
+val agg_df = firstApproachDF.groupBy("Asset", "Platform", "Trade Name").agg(
+    
+    
+    sum("Buy Price").as("buy_price_sum"),
+    sum("Sell Price").as("sell_price_Sum"),
+    
+    min("Buy Price").as("buy_price_min"),
+    min("Sell Price").as("sell_price_min"),
+    
+    max("Buy Price").as("buy_price_max"),
+    max("Sell Price").as("sell_price_max"),
+    
+    avg("Buy Price").as("buy_price_avg"),
+    avg("Sell Price").as("sell_price_avg"),
+    
+    expr("percentile(`Sell Price`, 0.5)").as("sell_price_P50"),
+    expr("percentile(`Buy Price`, 0.5)").as("buy_price_P50")
+    )
+    
+ z.show(agg_df)
