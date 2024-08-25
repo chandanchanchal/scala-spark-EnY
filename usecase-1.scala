@@ -124,4 +124,24 @@ final case class JoinedDataWithEuro(
         dollarToEuro(r.amountDollars) // new column
       )
     )
+## Aggregating
 
+final case class TotalSalesByPerson(
+    personId: Int,
+    firstName: String,
+    lastName: String,
+    initials: String,
+    sumAmountDollars: Double,
+    sumAmountEuros: Double,
+    avgAmountDollars: Double,
+    avgAmountEuros: Double)
+  val totalSalesByPerson: Dataset[TotalSalesByPerson] =
+    toDS {
+      joinedDataWithEuro
+        .groupBy($"personId", $"firstName", $"lastName", $"initials").agg(
+          sum($"amountDollars").alias("sumAmountDollars"),
+          sum($"amountEuros").alias("sumAmountEuros"),
+          avg($"amountDollars").alias("avgAmountDollars"),
+          avg($"amountEuros").alias("avgAmountEuros")
+        )
+    }
