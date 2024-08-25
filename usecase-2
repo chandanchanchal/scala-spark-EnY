@@ -27,3 +27,8 @@ val orExampleDF = firstApproachDF.filter(col("Trade Name") === "Amazon"
 || col("Trade Name") ==="Facebook")
 
 orExampleDF.show()
+
+val numberOfTradesPerPlatform = firstApproachDF.groupBy("Asset", "Platform")
+.agg(count("*").as("NumberOfTradesPerAssetPPlatForm"))
+
+numberOfTradesPerPlatform.show()
