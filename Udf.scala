@@ -11,3 +11,8 @@ val convertCase =  (strQuote:String) => {
     val arr = strQuote.split(" ")
     arr.map(f=>  f.substring(0,1).toUpperCase + f.substring(1,f.length)).mkString(" ")
 }
+
+val convertUDF = udf(convertCase)
+//Using with DataFrame
+df.select(col("Seqno"), 
+    convertUDF(col("Quote")).as("Quote") ).show(false)
