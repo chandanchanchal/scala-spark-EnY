@@ -67,3 +67,47 @@ sampledData.foreach(println)
 
 
 
+#######################################---for set operation-----
+val dataset1 = spark.sparkContext.parallelize(List(1, 2, 3, 4, 5))
+val dataset2 = spark.sparkContext.parallelize(List(4, 5, 6, 7, 8))
+
+val unionRDD = dataset1.union(dataset2)
+println("Union of the two datasets:")
+unionRDD.collect().foreach(println)
+
+
+val distinctUnionRDD = unionRDD.distinct()
+println("Distinct Union of the two datasets:")
+distinctUnionRDD.collect().foreach(println)
+
+
+val intersectionRDD = dataset1.intersection(dataset2)
+println("Intersection of the two datasets:")
+intersectionRDD.collect().foreach(println)
+
+
+val subtractionRDD = dataset1.subtract(dataset2)
+println("Elements in dataset1 but not in dataset2:")
+subtractionRDD.collect().foreach(println)
+
+val cartesianRDD = dataset1.cartesian(dataset2)
+println("Cartesian product of the two datasets:")
+cartesianRDD.collect().foreach(println)
+
+
+val filteredRDD = unionRDD.filter(_ % 2 == 0)
+println("Even numbers from the union of the two datasets:")
+filteredRDD.collect().foreach(println)
+
+
+println(s"Count of elements in Union: ${unionRDD.count()}")
+println(s"Count of elements in Intersection: ${intersectionRDD.count()}")
+println(s"Count of elements in Subtraction: ${subtractionRDD.count()}")
+
+
+
+
+
+
+
+
