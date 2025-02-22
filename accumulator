@@ -1,0 +1,44 @@
+import org.apache.spark.sql.SparkSession
+
+object AccumulatorExample {
+  def main(args: Array[String]): Unit = {
+    // Create a SparkSession
+    val spark: SparkSession = SparkSession.builder()
+      .appName("AccumulatorExample")
+      .master("local[*]")
+      .getOrCreate()
+
+    // For implicit conversions like converting RDDs to DataFrames
+    import spark.implicits._
+
+    // Create an RDD of sentences
+    val sentences = spark.sparkContext.parallelize(Seq(
+      "Spark is awesome",
+      "Accumulators are a shared variable",
+      "They help in aggregation across workers"
+    ))
+
+    // Create an accumulator to count words longer than 5 characters
+    val longWordCount = spark.sparkContext.longAccumulator("LongWordCount")
+
+    // Define the threshold length
+    val threshold = 5
+
+    // Transform the sentences RDD to words and count words longer than the threshold using the accumulator
+    val words = sentences.flatMap(_.split(" ")).map { word =>
+      if (word.length > threshold) {
+        longWordCount.add(1)
+      }
+      word
+    }
+
+    // Trigger an action to compute the RDD and force evaluation
+    words.collect()
+
+    // Print the accumulator value
+    println(s"Number of words longer than $threshold characters: ${longWordCount.value}")
+
+    // Stop the SparkSession
+    spark.stop()
+  }
+}
