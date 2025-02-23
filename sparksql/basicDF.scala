@@ -8,6 +8,7 @@ val data = Seq(("Java", "20000"), ("Python", "100000"), ("Scala", "3000"))
 // Spark Create DataFrame from RDD
 val rdd = spark.sparkContext.parallelize(data)
 
+import spark.implicits.
 val dfFromRdd1 = rdd.toDF()
 dfFromRdd1.printSchema()
 dfFromRdd1.show()
