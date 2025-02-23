@@ -5,6 +5,8 @@ import org.apache.spark.sql.functions.array_contains
 // Create data
 val columns = Seq("language","users_count")
 val data = Seq(("Java", "20000"), ("Python", "100000"), ("Scala", "3000"))
+// Spark Create DataFrame from RDD
+val rdd = spark.sparkContext.parallelize(data)
 
 val dfFromRdd1 = rdd.toDF()
 dfFromRdd1.printSchema()
