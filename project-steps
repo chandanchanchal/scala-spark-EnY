@@ -1,0 +1,10 @@
+Explanation:
+
+Data Loading: Reads the NYC taxi data from a CSV file with headers and infers the schema.
+Basic Overview: Displays the schema and the first five rows of the dataset.
+Total Trips: Calculates the total number of trips in the dataset.
+Average Fare per Trip: Computes the average fare amount across all trips.
+Peak Pickup Hours: Extracts the hour from the pickup timestamp and identifies the hours with the highest number of pickups.
+Busiest Pickup Locations: Determines the most frequent pickup locations based on location IDs.
+Trip Distance Analysis: Calculates average, minimum, and maximum trip distances to understand trip length patterns.
+Fare Distribution Analysis: Analyzes how fares are distributed by grouping trips based on fare amounts.
